@@ -1,0 +1,28 @@
+{% extends "task/index.html" %}
+{% load static %}
+{% block task_list %}
+    <div class="row">
+        {% for task in allTasks %}
+            <div class="card w-50" id="card-{{ task.pk }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ task }}</h5>
+                    <p class="card-text">{{ task.Description }}</p>
+                    <a href="#" class="btn btn-sm btn-primary disabled">{{ task.Status }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        // load the cards into correct column
+        $(function () {
+            {% for task in allTasks %}
+                var node = document.getElementById("card-{{ task.pk }}");
+                document.getElementById("{{ task.Status }}-board").appendChild(node);
+            {% endfor %}
+        });
+    </script>
+{% endblock %}

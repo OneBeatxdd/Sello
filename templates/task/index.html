@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+    <section class="page-section">
+        <div class="container">
+            <div class="horizontalScroll">
+                <div class="board">
+                    <div class="board-header">
+                        To-Do
+                    </div>
+                    <div class="board-body" id="To-Do-board">
+
+                    </div>
+                </div>
+                <div class="board">
+                    <div class="board-header">
+                        Doing
+                    </div>
+                    <div class="board-body" id="Doing-board">
+
+                    </div>
+                </div>
+                <div class="board">
+                    <div class="board-header">
+                        Completed
+                    </div>
+                    <div class="board-body" id="Completed-board">
+
+                    </div>
+                </div>
+                <div class="board">
+                    <div class="board-header">
+                        QA
+                    </div>
+                    <div class="board-body" id="QA-board">
+
+                    </div>
+                </div>
+                <div class="board">
+                    <div class="board-header">
+                        Closed
+                    </div>
+                    <div class="board-body" id="Closed-board">
+
+                    </div>
+                </div>
+            </div>
+            <div class="new-board">
+                <div class="board-header">
+                    BackLog
+                </div>
+                <div class="board-body" id="New-board">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block task_list %}
+
+    {% endblock %}
+
+    {% block script %}
+
+    {% endblock %}
+{% endblock %}

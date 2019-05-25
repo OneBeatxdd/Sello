@@ -8,4 +8,7 @@ urlpatterns = [
 
     # /
     url(r'^$', views.index, name='index'),
+
+    # /task/
+    url(r'^task/', include(('task.urls', 'task'), namespace='task')),
 ]

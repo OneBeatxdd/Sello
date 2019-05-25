@@ -1,0 +1,20 @@
+[
+  {
+    "model": "task.Task",
+    "pk": 1,
+    "fields": {
+      "Title": "A new Task",
+      "Description": "testing the loaddata",
+      "Status": "New"
+    }
+  },
+  {
+    "model": "task.Task",
+    "pk": 2,
+    "fields": {
+      "Title": "Another Task",
+      "Description": "Trying to make it work",
+      "Status": "New"
+    }
+  }
+]
