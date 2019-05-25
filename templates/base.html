@@ -1,0 +1,56 @@
+{% load i18n %}
+{% load static %}
+<!-- Own CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+<!-- bootstrap css -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- JQuery JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recap of the stuff I learnt</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top bg-dark" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+        <button id="addButton" class="btn-primary text-white" type="button" data-toggle="modal"
+                data-target="#addTaskForm">
+            Add Task
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+<!-- Modal -->
+<div class="modal fade" id="addTaskForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create a new Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+{% block body %}
+
+{% endblock %}
+
+</body>
+</html>
