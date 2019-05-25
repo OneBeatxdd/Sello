@@ -1,6 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body %}
+    <script>
+        function drag(ev) {
+            ev.dataTransfer.setData("id", ev.target.id);
+        }
+
+        function split(str){
+            var array = str.split("-");
+            
+        }
+
+        // on load add event listener
+        $(function () {
+            $('.board-body').each(function (i, obj) {
+                //test
+                obj.addEventListener("dragover", function (ev) {
+                    ev.preventDefault();
+                });
+                obj.addEventListener("drop", function (ev) {
+                    ev.preventDefault();
+                    var data = ev.dataTransfer.getData("id");
+                    console.log(data + ' dropped to ' + obj.id);
+                    ev.target.appendChild(document.getElementById(data));
+                })
+            });
+        });
+    </script>
     <section class="page-section board-panel">
         <div class="container">
             <div class="horizontalScroll">

@@ -35,3 +35,4 @@ class TaskDelete(DeleteView):
             return HttpResponseRedirect(reverse('task:index'))
         else:
             return super(TaskDelete, self).post(request, *args, **kwargs)
+

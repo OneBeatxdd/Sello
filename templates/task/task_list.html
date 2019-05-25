@@ -3,7 +3,7 @@
 {% block task_list %}
     <div class="row">
         {% for task in allTasks %}
-            <div class="card w-50" id="card-{{ task.pk }}">
+            <div class="card w-50" id="card-{{ task.pk }}" draggable="true" ondragstart="drag(event)">
                 <div class="card-body">
                     <h5 class="card-title">{{ task }}</h5>
                     <p class="card-text">{{ task.Description }}</p>
