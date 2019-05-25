@@ -9,7 +9,7 @@ class Task(models.Model):
     # To-Do Doing Completed QA Closed New
 
     def get_absolute_url(self):
-        return reverse('view_task:index')
+        return reverse('task:index')
 
     def __str__(self):
         return self.Title

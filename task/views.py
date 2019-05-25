@@ -12,3 +12,13 @@ def index(request):
         'allTasks': allTasks
     }
     return HttpResponse(template.render(context, request))
+
+
+class CreateTask(CreateView):
+    model = Task
+    fields = ['Title', 'Description']
+
+
+class DetailView(DetailView):
+    model = Task
+    template_name = 'task/details.html'

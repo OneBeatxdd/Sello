@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" action="{% url 'view_task:task-add' %}" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" action="{% url 'task:task-add' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% include 'form-template.html' %}
     <div class="form-group">
