@@ -25,10 +25,13 @@
     <script>
         // load the cards into correct column
         $(function () {
-            {% for task in allTasks %}
-                var node = document.getElementById("card-{{ task.pk }}");
-                document.getElementById("{{ task.Status }}-board").appendChild(node);
-            {% endfor %}
+            function load_status() {
+                {% for task in allTasks %}
+                    var node = document.getElementById("card-{{ task.pk }}");
+                    document.getElementById("{{ task.Status }}-board").appendChild(node);
+                {% endfor %}
+            }
+            load_status();
         });
     </script>
 {% endblock %}

@@ -6,27 +6,68 @@
             ev.dataTransfer.setData("id", ev.target.id);
         }
 
-        function split(str){
+        function split(str) {
             var array = str.split("-");
-            
+            if (array[0] == 'card') {
+                // this is the card so get the second one
+                return array[1];
+            } else {
+                // we are dealing with boards
+                if (array[0] == 'To') {
+                    return 'To-Do';
+                }
+                return array[0];
+            }
         }
 
         // on load add event listener
-        $(function () {
-            $('.board-body').each(function (i, obj) {
-                //test
-                obj.addEventListener("dragover", function (ev) {
-                    ev.preventDefault();
-                });
-                obj.addEventListener("drop", function (ev) {
-                    ev.preventDefault();
-                    var data = ev.dataTransfer.getData("id");
-                    console.log(data + ' dropped to ' + obj.id);
-                    ev.target.appendChild(document.getElementById(data));
-                })
+        window.allowDrop = function (ev) {
+            ev.preventDefault();
+            if (ev.target.classList.contains("board-body")) {
+                ev.dataTransfer.dropEffect = "all"; // drop it like it's hot
+            } else {
+                ev.dataTransfer.dropEffect = "none"; // dropping is not allowed
+                return false;
+            }
+        };
+        window.drag = function (ev) {
+            ev.dataTransfer.setData("id", ev.target.id);
+        };
+
+        window.drop = function (ev) {
+            ev.preventDefault();
+            var id = ev.dataTransfer.getData("id");
+
+            var dragged = document.getElementById(id);
+            ev.target.appendChild(dragged);
+            console.log(id + ' dropped to ' + ev.target.id);
+
+            // when drop change status
+            var card_id = split(id);
+            var board_id = split(ev.target.id);
+
+            $.ajax({
+                url: '{% url 'task:task-update' %}',
+                type: "POST",
+                data: {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                        card_id: card_id,
+                        status: board_id
+                },
+                //dataType: "json",
+                success: function (data) {
+                    console.log('success');
+                    console.log(data);
+                },
+                error: function (xhr,errmsg,err) {
+                    console.log('error?' + err);
+                    console.log(errmsg);
+                    //console.log(xhr.status + ": " + xhr.responseText);
+                }
             });
-        });
+           // location.reload()
+        };
     </script>
+    {% csrf_token %}
     <section class="page-section board-panel">
         <div class="container">
             <div class="horizontalScroll">
@@ -34,7 +75,7 @@
                     <div class="board-header">
                         To-Do
                     </div>
-                    <div class="board-body" id="To-Do-board">
+                    <div class="board-body" id="To-Do-board" ondrop="drop(event)" ondragover="allowDrop(event)">
 
                     </div>
                 </div>
@@ -42,7 +83,7 @@
                     <div class="board-header">
                         Doing
                     </div>
-                    <div class="board-body" id="Doing-board">
+                    <div class="board-body" id="Doing-board" ondrop="drop(event)" ondragover="allowDrop(event)">
 
                     </div>
                 </div>
@@ -50,7 +91,7 @@
                     <div class="board-header">
                         Completed
                     </div>
-                    <div class="board-body" id="Completed-board">
+                    <div class="board-body" id="Completed-board" ondrop="drop(event)" ondragover="allowDrop(event)">
 
                     </div>
                 </div>
@@ -58,7 +99,7 @@
                     <div class="board-header">
                         QA
                     </div>
-                    <div class="board-body" id="QA-board">
+                    <div class="board-body" id="QA-board" ondrop="drop(event)" ondragover="allowDrop(event)">
 
                     </div>
                 </div>
@@ -66,7 +107,7 @@
                     <div class="board-header">
                         Closed
                     </div>
-                    <div class="board-body" id="Closed-board">
+                    <div class="board-body" id="Closed-board" ondrop="drop(event)" ondragover="allowDrop(event)">
 
                     </div>
                 </div>
@@ -75,7 +116,7 @@
                 <div class="board-header">
                     BackLog
                 </div>
-                <div class="board-body" id="New-board">
+                <div class="board-body" id="New-board" ondrop="drop(event)" ondragover="allowDrop(event)">
 
                 </div>
             </div>
