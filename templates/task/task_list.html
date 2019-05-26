@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ task }}</h5>
                     <p class="card-text">{{ task.Description }}</p>
-                    <a href="#" class="btn btn-sm btn-primary disabled">{{ task.Status }}</a>
+                    <a href="#" class="btn btn-sm btn-primary disabled status">{{ task.Status }}</a>
                     <a href="{% url 'task:task-delete' task.pk %} " class="btn btn-sm btn-danger float-right"><i
                             class="fas fa-trash"></i></a>
                 </div>

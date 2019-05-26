@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.template import loader
 from .models import Task
@@ -44,9 +44,8 @@ def update_status(request):
     card = Task.objects.get(pk=id)
     card.Status = status
     card.save()
-    template = loader.get_template('task/task_list.html')
-    allTasks = Task.objects.all()
     context = {
-        'allTasks': allTasks
+        'id': id,
+        'status': status
     }
-    return HttpResponse(template.render(context, request))
+    return JsonResponse(context)

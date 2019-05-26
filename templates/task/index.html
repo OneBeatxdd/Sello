@@ -57,6 +57,7 @@
                 success: function (data) {
                     console.log('success');
                     console.log(data);
+                    $('#card-'+data['id'] +' .status').html( data['status']);
                 },
                 error: function (xhr,errmsg,err) {
                     console.log('error?' + err);
@@ -64,7 +65,6 @@
                     //console.log(xhr.status + ": " + xhr.responseText);
                 }
             });
-           // location.reload()
         };
     </script>
     {% csrf_token %}
