@@ -261,7 +261,7 @@ div.horizontalScroll div.board {
     width: 300px;
     height: 800px;
     border: solid 1px #000;
-    display: inline-block;
+    display: inline-table;
 }
 
 div.board div.board-header {
