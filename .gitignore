@@ -20,3 +20,7 @@ venv.bak/
 .DS_STORE
 
 cheatsheet.txt
+
+db.sqlite3
+
+/dragdroptouch/

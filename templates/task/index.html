@@ -49,17 +49,18 @@
             $.ajax({
                 url: '{% url 'task:task-update' %}',
                 type: "POST",
-                data: {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
-                        card_id: card_id,
-                        status: board_id
+                data: {
+                    csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                    card_id: card_id,
+                    status: board_id
                 },
                 //dataType: "json",
                 success: function (data) {
                     console.log('success');
                     console.log(data);
-                    $('#card-'+data['id'] +' .status').html( data['status']);
+                    $('#card-' + data['id'] + ' .status').html(data['status']);
                 },
-                error: function (xhr,errmsg,err) {
+                error: function (xhr, errmsg, err) {
                     console.log('error?' + err);
                     console.log(errmsg);
                     //console.log(xhr.status + ": " + xhr.responseText);
@@ -71,6 +72,13 @@
     <section class="page-section board-panel">
         <div class="container">
             <div class="horizontalScroll">
+                <div class="board">
+                    <div class="board-header">
+                        BackLog
+                    </div>
+                    <div class="board-body" id="New-board" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    </div>
+                </div>
                 <div class="board">
                     <div class="board-header">
                         To-Do
@@ -105,13 +113,6 @@
                     </div>
                     <div class="board-body" id="Closed-board" ondrop="drop(event)" ondragover="allowDrop(event)">
                     </div>
-                </div>
-            </div>
-            <div class="new-board">
-                <div class="board-header">
-                    BackLog
-                </div>
-                <div class="board-body" id="New-board" ondrop="drop(event)" ondragover="allowDrop(event)">
                 </div>
             </div>
         </div>

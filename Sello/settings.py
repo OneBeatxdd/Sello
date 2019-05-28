@@ -125,3 +125,7 @@ FIXTURE_DIRS = [
     os.path.join(BASE_DIR, "fixtures"),
     '/fixtures/'
 ]
+
+ALLOWED_HOSTS = [
+    '172.20.10.3'
+]
