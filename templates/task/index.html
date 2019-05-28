@@ -20,31 +20,55 @@
             }
         }
 
+        var scrollable = true;
+
+        var listener = function (e) {
+            console.log('touchmove!');
+            console.log(e);
+            e.dataTransfer.setData("id", e.target.id);
+            if (!scrollable) {
+                e.preventDefault();
+            }
+        };
+
+        //document.addEventListener('touchmove', listener, {passive: false});
+
+
         // on load add event listener
         window.allowDrop = function (ev) {
             ev.preventDefault();
-            if (ev.target.classList.contains("board-body")) {
-                ev.dataTransfer.dropEffect = "all"; // drop it like it's hot
-            } else {
-                ev.dataTransfer.dropEffect = "none"; // dropping is not allowed
-                return false;
-            }
+       //     if (ev.target.classList.contains("board-body")) {
+        //        ev.dataTransfer.dropEffect = "all"; // drop it like it's hot
+        //    } else {
+        //        console.log(ev.target.parentElement);
+         //       ev.dataTransfer.dropEffect = "none"; // dropping is not allowed
+           //     return false;
+           // }
         };
         window.drag = function (ev) {
+            console.log(ev);
             ev.dataTransfer.setData("id", ev.target.id);
         };
 
         window.drop = function (ev) {
+            let board = ev.target;
+            if (ev.target.classList.contains("within-the-card")){
+                console.log('ev.target.classList.contains("within-the-card")');
+                board = ev.target.parentElement.parentElement;
+            }else if(ev.target.classList.contains("within-the-card-body")){
+                console.log('ev.target.classList.contains("within-the-card-body")');
+                board = ev.target.parentElement.parentElement.parentElement;
+            }
             ev.preventDefault();
             var id = ev.dataTransfer.getData("id");
 
             var dragged = document.getElementById(id);
-            ev.target.appendChild(dragged);
-            console.log(id + ' dropped to ' + ev.target.id);
+            board.appendChild(dragged);
+            console.log(id + ' dropped to ' + board.id);
 
             // when drop change status
             var card_id = split(id);
-            var board_id = split(ev.target.id);
+            var board_id = split(board.id);
 
             $.ajax({
                 url: '{% url 'task:task-update' %}',
