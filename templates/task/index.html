@@ -58,9 +58,18 @@
 
         };
         // DEBUG
-        
+
+        window.addEventListener("drop", function (e) {
+            e = e || event;
+            e.preventDefault();
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                document.getElementById('horizontalScroll').setAttribute('style', 'overflow: auto;');
+                $('#horizontalScroll').removeClass('dragging');
+            }
+        }, false);
+
         // when drop transfer stuff
-        window.drop = function (ev) {
+        function drop(ev) {
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 document.getElementById('horizontalScroll').setAttribute('style', 'overflow: auto;');
                 $('#horizontalScroll').removeClass('dragging');
