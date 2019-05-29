@@ -3,8 +3,8 @@
     "model": "task.Task",
     "pk": 1,
     "fields": {
-      "Title": "A new Task",
-      "Description": "testing the loaddata",
+      "Title": "New feature",
+      "Description": "A feature requested from user to improve overall efficiency.",
       "Status": "New"
     }
   },
@@ -12,8 +12,8 @@
     "model": "task.Task",
     "pk": 2,
     "fields": {
-      "Title": "Another Task",
-      "Description": "Trying to make it work",
+      "Title": "Enhancement",
+      "Description": "Enhancement requested from product owner to improve overall design.",
       "Status": "New"
     }
   }
