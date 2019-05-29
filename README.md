@@ -56,7 +56,7 @@ http://192.168.14.15:8800
 
 Demo
 
-![Mobile access](media/IMB_C2BGoc.GIF)
+![Mobile access](static/img/IMB_C2BGoc.GIF)
 
 ## Built With
 

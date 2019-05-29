@@ -115,10 +115,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "src"),
-    '/src/',
+    os.path.join(BASE_DIR, "static"),
+    '/static/',
 ]
-STATIC_ROOT = '/static/'
 
 FIXTURE_DIRS = [
     os.path.join(BASE_DIR, "fixtures"),
@@ -129,7 +128,8 @@ ALLOWED_HOSTS = [
     '172.20.10.3',
     '0.0.0.0',
     '192.168.43.97',
-    '192.168.1.117'
+    '192.168.1.117',
+    '172.20.10.2'
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
