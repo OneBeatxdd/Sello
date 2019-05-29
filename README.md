@@ -56,7 +56,7 @@ http://192.168.14.15:8800
 
 Demo
 
-![Mobile access](static/img/IMB_C2BGoc.GIF)
+![Mobile access](https://github.com//OneBeatxdd/Sello/blob/master/static/img/IMB_C2BGoc.GIF?raw=true)
 
 ## Built With
 
