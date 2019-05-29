@@ -5,6 +5,8 @@
  */
 
 body {
+    background-image: url('/media/art-art-materials-background-1762851.jpg');
+    background-size: cover;
 }
 
 h1,
@@ -259,21 +261,25 @@ div.horizontalScroll {
 
 div.horizontalScroll div.board {
     width: 300px;
-    height: 800px;
-    border: solid 1px #000;
+    /*min-height: 200px;*/
+    border-radius: 10px;
     display: inline-table;
+    background-color: #dddddd;
 }
 
 div.board div.board-header {
     width: 100%;
     height: 5%;
-    border-bottom: solid 1px;
+    border-bottom: solid 1px white;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #dddddd;
 }
 
 
 div.board-body {
     width: 100%;
-    height: 95%;
+    min-height: 150px;
 }
 
 .board-panel .container {
@@ -295,6 +301,9 @@ div.card:focus {
     word-wrap: break-word;
 }
 
+.card {
+    margin: 5px 10px 5px 10px; /* top right bottom left */
+}
 
 /* mobile layout */
 /* Small devices (landscape phones, 576px and up)*/
@@ -303,5 +312,6 @@ div.card:focus {
         /* Disables pull-to-refresh and overscroll glow effect.
            Still keeps swipe navigations. IOS does not support... */
         overscroll-behavior-y: none;
+        overflow-y: hidden;
     }
 }
