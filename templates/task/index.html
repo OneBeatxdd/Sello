@@ -2,10 +2,6 @@
 {% load static %}
 {% block body %}
     <script>
-        function drag(ev) {
-            ev.dataTransfer.setData("id", ev.target.id);
-        }
-
         function split(str) {
             var array = str.split("-");
             if (array[0] == 'card') {
@@ -20,43 +16,59 @@
             }
         }
 
-        var scrollable = true;
-
-        var listener = function (e) {
-            console.log('touchmove!');
-            console.log(e);
-            e.dataTransfer.setData("id", e.target.id);
-            if (!scrollable) {
-                e.preventDefault();
-            }
-        };
-
-        //document.addEventListener('touchmove', listener, {passive: false});
-
 
         // on load add event listener
         window.allowDrop = function (ev) {
             ev.preventDefault();
-       //     if (ev.target.classList.contains("board-body")) {
-        //        ev.dataTransfer.dropEffect = "all"; // drop it like it's hot
-        //    } else {
-        //        console.log(ev.target.parentElement);
-         //       ev.dataTransfer.dropEffect = "none"; // dropping is not allowed
-           //     return false;
-           // }
+            //     if (ev.target.classList.contains("board-body")) {
+            //        ev.dataTransfer.dropEffect = "all"; // drop it like it's hot
+            //    } else {
+            //        console.log(ev.target.parentElement);
+            //       ev.dataTransfer.dropEffect = "none"; // dropping is not allowed
+            //     return false;
+            // }
         };
+
+        // dragging the element
         window.drag = function (ev) {
-            console.log(ev);
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                console.log(ev);
+                document.getElementById('horizontalScroll').setAttribute('style', 'overflow: hidden;');
+                $('#horizontalScroll').addClass('dragging');
+            }
             ev.dataTransfer.setData("id", ev.target.id);
         };
 
+        // for mobile device to scroll
+        window.onmousemove = function (ev) {
+            if ($('#horizontalScroll').hasClass('dragging')) {
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    let x = document.getElementById('horizontalScroll').scrollLeft;
+                    //console.log(ev);
+                    if (ev.clientX > 650) {
+                        x = x + 200;
+                        $('#horizontalScroll').animate({scrollLeft: x}, "fast");
+                    }
+                    if (ev.clientX < 70) {
+                        x -= 200;
+                        $('#horizontalScroll').animate({scrollLeft: x}, "fast");
+                    }
+                }
+            }
+
+        };
+        // DEBUG
+
+        // when drop transfer stuff
         window.drop = function (ev) {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                document.getElementById('horizontalScroll').setAttribute('style', 'overflow: auto;');
+                $('#horizontalScroll').removeClass('dragging');
+            }
             let board = ev.target;
-            if (ev.target.classList.contains("within-the-card")){
-                console.log('ev.target.classList.contains("within-the-card")');
+            if (ev.target.classList.contains("within-the-card")) {
                 board = ev.target.parentElement.parentElement;
-            }else if(ev.target.classList.contains("within-the-card-body")){
-                console.log('ev.target.classList.contains("within-the-card-body")');
+            } else if (ev.target.classList.contains("within-the-card-body")) {
                 board = ev.target.parentElement.parentElement.parentElement;
             }
             ev.preventDefault();
@@ -82,7 +94,10 @@
                 success: function (data) {
                     console.log('success');
                     console.log(data);
+                    // update the status
                     $('#card-' + data['id'] + ' .status').html(data['status']);
+                    // FUTURE: focus on new card
+                    //    $('#card-' + data['id']).focus();
                 },
                 error: function (xhr, errmsg, err) {
                     console.log('error?' + err);
@@ -95,7 +110,7 @@
     {% csrf_token %}
     <section class="page-section board-panel">
         <div class="container">
-            <div class="horizontalScroll">
+            <div class="horizontalScroll" id="horizontalScroll">
                 <div class="board">
                     <div class="board-header">
                         BackLog

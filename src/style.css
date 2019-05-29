@@ -276,7 +276,7 @@ div.board-body {
     height: 95%;
 }
 
-.board-panel .container{
+.board-panel .container {
     max-width: 98%;
     padding-left: 8px;
     margin-left: 10px;
@@ -284,8 +284,24 @@ div.board-body {
     padding-right: 8px;
 }
 
+/* FUTURE: focus on the new card made */
+div.card:focus {
+
+}
+
+
+.card-text {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+
 /* mobile layout */
 /* Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) {
-    
+@media (min-device-width: 320px) and (max-device-width: 480px) {
+    body {
+        /* Disables pull-to-refresh and overscroll glow effect.
+           Still keeps swipe navigations. IOS does not support... */
+        overscroll-behavior-y: none;
+    }
 }

@@ -3,12 +3,12 @@
 {% block task_list %}
     <div class="row">
         {% for task in allTasks %}
-            <div class="card" id="card-{{ task.pk }}" draggable="true" ondragstart="drag(event)">
+            <div class="card" id="card-{{ task.pk }}" draggable="true" ondragstart="drag(event)" style="width: 19rem">
                 <div class="card-body within-the-card">
                     <h5 class="card-title within-the-card-body">{{ task }}</h5>
                     <p class="card-text within-the-card-body">{{ task.Description }}</p>
-                    <a href="#" class="btn btn-sm btn-primary disabled status within-the-card">{{ task.Status }}</a>
-                    <a href="{% url 'task:task-delete' task.pk %} " class="btn btn-sm btn-danger float-right"><i
+                    <a href="#" class="btn btn-sm btn-primary disabled status within-the-card-body">{{ task.Status }}</a>
+                    <a href="{% url 'task:task-delete' task.pk %} " class="btn btn-sm btn-danger float-right within-the-card-body"><i
                             class="fas fa-trash"></i></a>
                 </div>
             </div>

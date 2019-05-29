@@ -21,12 +21,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1, user-scalable=0">
     <title>Sello</title>
     <script>
         $(function () {
             $('#addButton').on('click', function () {
                 console.log('#addButton was clicked');
-                // TODO: change the name of the url
                 $('.modal-body').load('{% url 'task:task-add' %}', function () {
                     $('#addTaskForm').modal({show: true});
                 });
