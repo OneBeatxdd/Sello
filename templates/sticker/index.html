@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+    {% csrf_token %}
+    <section class="page-section board-panel">
+        <div class="container">
+            <div class="row">
+                <a class="btn btn-primary" onclick="sendtowhatsapp()">Send to whatsapp</a>
+            </div>
+        </div>
+    </section>
+    <section class="page-section board-panel">
+        <div class="container">
+            <div class="row">
+                <a class="btn btn-primary" href="whatsapp://1234">Send to whatsapp 2</a>
+            </div>
+        </div>
+    </section>
+    <section class="page-section board-panel">
+        <div class="container">
+            <div class="row">
+                <a class="btn btn-primary" href="fivecj://1234">Send to whatsapp 3</a>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <a href="fivecj://167611c06u0HM" class="btn btn-secondary">
+                    <span>Add to iPhone</span>
+                </a>
+            </div>
+        </div>
+
+    </section>
+    <script>
+        function sendtowhatsapp() {
+            var items = [];
+            $.getJSON("{% static 'json/NarcolepticNugget.json' %}", function (data) {
+                $.each(data, function (key, val) {
+                    items.push(data);
+                });
+                items += "csrfmiddlewaretoken : " + document.getElementsByName('csrfmiddlewaretoken')[0].value;
+            });
+            $.ajax({
+                url: 'whatsapp://1234',
+                type: "POST",
+                data: JSON.stringify({items: items}),
+                //dataType: "json",
+                success: function (data) {
+                    console.log('success');
+                    console.log(data);
+                    // update the status
+                    $('#card-' + data['id'] + ' .status').html(data['status']);
+                    // FUTURE: focus on new card
+                    //    $('#card-' + data['id']).focus();
+                },
+                error: function (xhr, errmsg, err) {
+                    console.log('error?' + err);
+                    console.log(errmsg);
+                    //console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        }
+
+    </script>
+{% endblock %}

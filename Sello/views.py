@@ -9,3 +9,9 @@ def index(request):
     return redirect('task:index')
 
 
+def stickers(request):
+    template = loader.get_template('sticker/index.html')
+    context = {
+
+    }
+    return HttpResponse(template.render(context, request))

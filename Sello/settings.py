@@ -29,6 +29,8 @@ DEBUG = True
 INSTALLED_APPS = [
     # my stuff
     'task.apps.TaskConfig',
+    # cors
+    'corsheaders',
     # django stuff
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +41,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    # default stuff
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -129,8 +134,27 @@ ALLOWED_HOSTS = [
     '0.0.0.0',
     '192.168.43.97',
     '192.168.1.117',
-    '172.20.10.2'
+    '172.20.10.2',
+    'localhost',
+    '10.57.140.74'
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'whatsapp',
+)
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8800",
+]

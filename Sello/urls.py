@@ -13,4 +13,9 @@ urlpatterns = [
 
     # /task/
     url(r'^task/', include(('task.urls', 'task'), namespace='task')),
+
+
+    # /stickers/
+    url(r'^stickers/1234', views.stickers, name='stickers'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
